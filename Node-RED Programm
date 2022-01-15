@@ -1,1 +1,2325 @@
-[{"id":"145bab00.96b455","type":"tab","label":"//Mark 4 ","disabled":false,"info":""},{"id":"22dd9c65.757544","type":"inject","z":"145bab00.96b455","name":"start","topic":"","payload":"","payloadType":"date","repeat":"6","crontab":"","once":false,"onceDelay":0.1,"x":510,"y":1140,"wires":[["b342cb0b.d68ae8","ba116a57.62da48","6ff71088.7a4db","37bcfc0c.a960f4","d8c23cad.a5bba","1000169b.7e7909","665202b3.64107c","87b0982a.60e4f8","77baae19.17374","2d58071.7ec73f8"]]},{"id":"b342cb0b.d68ae8","type":"ads1x15-raspi","z":"145bab00.96b455","property":"payload","name":"Lichtsensor","chip":"IC_ADS1115","i2c_address":"ADDRESS_0x48","channel":"CHANNEL_0","samplesPerSecond0":"SPS_920","samplesPerSecond1":"SPS_128","progGainAmp":"PGA_4_096V","x":690,"y":580,"wires":[["5282a8a2.bb5a48"]]},{"id":"ba116a57.62da48","type":"rpi-ds18b20","z":"145bab00.96b455","topic":"","array":false,"name":"Tempratursensor","x":870,"y":1140,"wires":[["b9952d61.d37c4","e7a8de08.62ccc","cf942f65.2037b","6f491d47.0dda44"]]},{"id":"b9952d61.d37c4","type":"debug","z":"145bab00.96b455","name":"Temperatur","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","x":1090,"y":1140,"wires":[]},{"id":"5282a8a2.bb5a48","type":"change","z":"145bab00.96b455","name":"Wandler","rules":[{"t":"set","p":"payload","pt":"msg","to":"msg.payload.*","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":880,"y":580,"wires":[["b51854bc.6a3168","dd33b075.754b6","7f34265d.d38358","db7232de.c8358"]]},{"id":"b51854bc.6a3168","type":"debug","z":"145bab00.96b455","name":"Anzeige Licht","active":true,"tosidebar":true,"console":true,"tostatus":true,"complete":"payload","targetType":"msg","x":1100,"y":580,"wires":[]},{"id":"dd33b075.754b6","type":"switch","z":"145bab00.96b455","name":">3.6/<2","property":"payload","propertyType":"msg","rules":[{"t":"gt","v":"3.6","vt":"num"},{"t":"lt","v":"2","vt":"num"},{"t":"else"}],"checkall":"true","repair":false,"outputs":3,"x":1920,"y":740,"wires":[["83bed695.b8a718","a9a89a39.ca6cd8","9122d6b8.578868","a4bd9a5b.8d4da8"],["2a779359.0018ac","8afac4a9.477828","ae0b4afe.5da108","c3c642e.cba37c"],["d0362171.4af69","be6a1cc2.eaf56"]]},{"id":"6ff71088.7a4db","type":"ads1x15-raspi","z":"145bab00.96b455","property":"payload","name":"Feuchtigkeitssensor 1","chip":"IC_ADS1115","i2c_address":"ADDRESS_0x48","channel":"CHANNEL_1","samplesPerSecond0":"SPS_920","samplesPerSecond1":"SPS_128","progGainAmp":"PGA_4_096V","x":940,"y":1860,"wires":[["9a593b6b.ab2f18"]]},{"id":"9a593b6b.ab2f18","type":"change","z":"145bab00.96b455","name":"Wandler","rules":[{"t":"set","p":"payload","pt":"msg","to":"msg.payload.*","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":1120,"y":1860,"wires":[["4ab1d77e.f45ae8","ca5ea035.a1e9e","3eef3a6b.a6adf6","bdca717a.c3ba6"]]},{"id":"4ab1d77e.f45ae8","type":"debug","z":"145bab00.96b455","name":"Anzeige Feuchtigkeit 1","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","x":1320,"y":1860,"wires":[]},{"id":"ca5ea035.a1e9e","type":"switch","z":"145bab00.96b455","name":"<1.5/>4","property":"payload","propertyType":"msg","rules":[{"t":"lt","v":"1.5","vt":"num"},{"t":"gt","v":"4","vt":"num"},{"t":"else"}],"checkall":"true","repair":false,"outputs":3,"x":2080,"y":2200,"wires":[["9acf271a.68cd58","5cf5db6c.523024","2f6fd28f.98c41e"],["df7b29d8.35e498","fc25671c.634858","cef9ccfb.737bd"],["dd9042bb.215b2","71b13e46.46849","2eff3386.bd43dc","9c377d08.5a6e3"]]},{"id":"7f34265d.d38358","type":"http request","z":"145bab00.96b455","name":"Werte an pro Website weitergeben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit&value={{{payload}}}&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2200,"y":900,"wires":[["227322fb.b40d2e"]]},{"id":"227322fb.b40d2e","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","targetType":"msg","x":2430,"y":900,"wires":[]},{"id":"1000169b.7e7909","type":"ip","z":"145bab00.96b455","name":"ip","https":false,"timeout":"5000","internalIPv4":true,"internalIPv6":true,"publicIPv4":true,"publicIPv6":false,"x":890,"y":4440,"wires":[["6c9dfcdf.f4c124"]]},{"id":"6c9dfcdf.f4c124","type":"change","z":"145bab00.96b455","name":"","rules":[{"t":"set","p":"payload","pt":"msg","to":"msg.payload.internalIPv4","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":1110,"y":4440,"wires":[["8f1069e1.b2cd08","839a3850.f30058"]]},{"id":"8f1069e1.b2cd08","type":"http request","z":"145bab00.96b455","name":"IP an pro Website weitergeben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://tristan.sander.is/kom.php?key=lokaleIP&value={{{payload}}}&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":1410,"y":4520,"wires":[[]]},{"id":"e7a8de08.62ccc","type":"http request","z":"145bab00.96b455","name":"Werte an pro Website senden ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur&value={{{payload}}}&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2170,"y":1580,"wires":[["91a7e678.50d3b8"]]},{"id":"3eef3a6b.a6adf6","type":"http request","z":"145bab00.96b455","name":"air","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Sektor1&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2170,"y":2360,"wires":[["5654b909.c73558"]]},{"id":"5654b909.c73558","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2450,"y":2360,"wires":[]},{"id":"d0362171.4af69","type":"http request","z":"145bab00.96b455","name":"grün einfärben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:green&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2320,"y":600,"wires":[[]]},{"id":"2a779359.0018ac","type":"http request","z":"145bab00.96b455","name":"rot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:red&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2310,"y":520,"wires":[[]]},{"id":"83bed695.b8a718","type":"http request","z":"145bab00.96b455","name":"dunkelrot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:darked&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2330,"y":560,"wires":[[]]},{"id":"37bcfc0c.a960f4","type":"http request","z":"145bab00.96b455","name":"IP einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://tristan.sander.is/kom.php?key=lokaleIP_style&value=color:darkblue;modus=air","tls":"","persist":false,"proxy":"","authType":"","x":870,"y":4680,"wires":[[]]},{"id":"d8c23cad.a5bba","type":"http request","z":"145bab00.96b455","name":"zuletzt geloescht einfärben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://tristan.sander.is/kom.php?key=zuletzt geloescht_style&value=color:lightgrey&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":920,"y":4980,"wires":[[]]},{"id":"cf942f65.2037b","type":"switch","z":"145bab00.96b455","name":">23/<21","property":"payload","propertyType":"msg","rules":[{"t":"gt","v":"30.5","vt":"num"},{"t":"lt","v":"17.8","vt":"num"},{"t":"else"}],"checkall":"true","repair":false,"outputs":3,"x":1960,"y":1360,"wires":[["b89db703.8a0048","9f5cf693.642a28","4ef89853.21ca98","5391a306.6fbb4c"],["c8320fe2.ea06e","c865e460.168558","f6e156d0.926ea8","938be8e9.da5018"],["91219cc0.72fe8","b4acd664.25e128"]]},{"id":"dd9042bb.215b2","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2310,"y":2120,"wires":[["e72cd340.fffe"]]},{"id":"9acf271a.68cd58","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2310,"y":2160,"wires":[["e72cd340.fffe"]]},{"id":"e72cd340.fffe","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"15","set":"","level":"0","freq":"","out":"out","x":2580,"y":2160,"wires":[]},{"id":"df7b29d8.35e498","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2310,"y":2200,"wires":[["202c6b1e.ac2b84"]]},{"id":"71b13e46.46849","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2310,"y":2240,"wires":[["202c6b1e.ac2b84"]]},{"id":"202c6b1e.ac2b84","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"16","set":"","level":"0","freq":"","out":"out","x":2580,"y":2220,"wires":[]},{"id":"a9a89a39.ca6cd8","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2290,"y":660,"wires":[["402c22c7.bcaf8c"]]},{"id":"8afac4a9.477828","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2290,"y":700,"wires":[["402c22c7.bcaf8c"]]},{"id":"402c22c7.bcaf8c","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"37","set":"","level":"0","freq":"","out":"out","x":2560,"y":680,"wires":[]},{"id":"9122d6b8.578868","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2290,"y":740,"wires":[["78d61490.8658dc"]]},{"id":"ae0b4afe.5da108","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2290,"y":780,"wires":[["78d61490.8658dc"]]},{"id":"78d61490.8658dc","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"33","set":"","level":"0","freq":"","out":"out","x":2560,"y":760,"wires":[]},{"id":"9f5cf693.642a28","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2270,"y":1400,"wires":[["f10eeb4c.7e9568"]]},{"id":"c865e460.168558","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2270,"y":1440,"wires":[["f10eeb4c.7e9568"]]},{"id":"f10eeb4c.7e9568","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"35","set":"","level":"0","freq":"","out":"out","x":2460,"y":1400,"wires":[]},{"id":"c8320fe2.ea06e","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2270,"y":1351,"wires":[["f2f3c304.c5937"]]},{"id":"b89db703.8a0048","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2271,"y":1306,"wires":[["f2f3c304.c5937"]]},{"id":"f2f3c304.c5937","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"38","set":"","level":"0","freq":"","out":"out","x":2460,"y":1340,"wires":[]},{"id":"db7232de.c8358","type":"http request","z":"145bab00.96b455","name":"Werte an air Website weitergeben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/test2.php?key=Helligkeit&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2200,"y":960,"wires":[["fba6061d.0602e8"]]},{"id":"fba6061d.0602e8","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","targetType":"msg","x":2430,"y":960,"wires":[]},{"id":"6f491d47.0dda44","type":"http request","z":"145bab00.96b455","name":"Werte an Website senden ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28//kom.php?key=Temperatur&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2190,"y":1620,"wires":[["f447cb4.d146438"]]},{"id":"bdca717a.c3ba6","type":"http request","z":"145bab00.96b455","name":"pro","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Feuchtigkeitssensor2&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2170,"y":2400,"wires":[["e0b697cd.e9f0b8"]]},{"id":"e0b697cd.e9f0b8","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2450,"y":2400,"wires":[]},{"id":"2eff3386.bd43dc","type":"http request","z":"145bab00.96b455","name":"grün","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:green&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2330,"y":2040,"wires":[[]]},{"id":"5cf5db6c.523024","type":"http request","z":"145bab00.96b455","name":"rot","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:red&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2330,"y":1960,"wires":[[]]},{"id":"fc25671c.634858","type":"http request","z":"145bab00.96b455","name":"dunkel rot","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:darked&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2340,"y":2000,"wires":[[]]},{"id":"839a3850.f30058","type":"http request","z":"145bab00.96b455","name":"IP an air Website weitergeben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://tristan.sander.is/kom.php?key=lokaleIP&value={{{payload}}}&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":1410,"y":4580,"wires":[[]]},{"id":"665202b3.64107c","type":"http request","z":"145bab00.96b455","name":"IP einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://tristan.sander.is/kom.php?key=lokaleIP_style&value=color:darkblue;modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":870,"y":4760,"wires":[[]]},{"id":"2d58071.7ec73f8","type":"http request","z":"145bab00.96b455","name":"zuletzt geloescht einfärben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://tristan.sander.is/kom.php?key=zuletzt geloescht_style&value=color:lightgrey&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":920,"y":4880,"wires":[[]]},{"id":"91219cc0.72fe8","type":"http request","z":"145bab00.96b455","name":"grün einfärben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur_style&value=color:green&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2300,"y":1240,"wires":[[]]},{"id":"f6e156d0.926ea8","type":"http request","z":"145bab00.96b455","name":"rot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur_style&value=color:red&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2290,"y":1160,"wires":[[]]},{"id":"4ef89853.21ca98","type":"http request","z":"145bab00.96b455","name":"dunkelrot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur_style&value=color:darked&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2310,"y":1200,"wires":[[]]},{"id":"87b0982a.60e4f8","type":"ads1x15-raspi","z":"145bab00.96b455","property":"payload","name":"Feuchtigkeitssensor 2","chip":"IC_ADS1115","i2c_address":"ADDRESS_0x48","channel":"CHANNEL_2","samplesPerSecond0":"SPS_920","samplesPerSecond1":"SPS_128","progGainAmp":"PGA_4_096V","x":980,"y":2660,"wires":[["d839743d.2e8858"]]},{"id":"d839743d.2e8858","type":"change","z":"145bab00.96b455","name":"Wandler","rules":[{"t":"set","p":"payload","pt":"msg","to":"msg.payload.*","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":1160,"y":2660,"wires":[["3c513ec8.75a902","b945b2ba.a1cf4","54e8f9a4.a385f8","5a9dac3.52c0454"]]},{"id":"3c513ec8.75a902","type":"debug","z":"145bab00.96b455","name":"Anzeige Feuchtigkeit 2","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","x":1360,"y":2660,"wires":[]},{"id":"b945b2ba.a1cf4","type":"switch","z":"145bab00.96b455","name":"<1.5/>4","property":"payload","propertyType":"msg","rules":[{"t":"lt","v":"1.5","vt":"num"},{"t":"gt","v":"4","vt":"num"},{"t":"else"}],"checkall":"true","repair":false,"outputs":3,"x":2120,"y":3000,"wires":[["7b75c6c3.b06738","7317549.02215ac","32fa8f25.6447"],["d256cdf5.4c85c","7ccc9e49.6da78","f75339d5.6af138"],["aabc3e20.b0a5f","eed764de.6c5a58","5f88fd4d.d8ceb4","2f189a33.e53a96"]]},{"id":"54e8f9a4.a385f8","type":"http request","z":"145bab00.96b455","name":"air","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Sektor2&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2210,"y":3160,"wires":[["5a84296e.f7a538"]]},{"id":"5a84296e.f7a538","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2490,"y":3160,"wires":[]},{"id":"aabc3e20.b0a5f","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2350,"y":2920,"wires":[["53ac7105.7815c"]]},{"id":"7b75c6c3.b06738","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2350,"y":2960,"wires":[["53ac7105.7815c"]]},{"id":"53ac7105.7815c","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"15","set":"","level":"0","freq":"","out":"out","x":2620,"y":2960,"wires":[]},{"id":"d256cdf5.4c85c","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2350,"y":3000,"wires":[["8a52b96e.1bc9b8"]]},{"id":"eed764de.6c5a58","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2350,"y":3040,"wires":[["8a52b96e.1bc9b8"]]},{"id":"8a52b96e.1bc9b8","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"16","set":"","level":"0","freq":"","out":"out","x":2620,"y":3020,"wires":[]},{"id":"5a9dac3.52c0454","type":"http request","z":"145bab00.96b455","name":"pro","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Feuchtigkeitssensor2&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2210,"y":3200,"wires":[["fcbd70e6.8febf"]]},{"id":"fcbd70e6.8febf","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2490,"y":3200,"wires":[]},{"id":"5f88fd4d.d8ceb4","type":"http request","z":"145bab00.96b455","name":"grün","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:green&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2370,"y":2840,"wires":[[]]},{"id":"7317549.02215ac","type":"http request","z":"145bab00.96b455","name":"rot","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:red&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2370,"y":2760,"wires":[[]]},{"id":"7ccc9e49.6da78","type":"http request","z":"145bab00.96b455","name":"dunkel rot","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&value=color:darked&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2380,"y":2800,"wires":[[]]},{"id":"77baae19.17374","type":"ads1x15-raspi","z":"145bab00.96b455","property":"payload","name":"Feuchtigkeitssensor 3","chip":"IC_ADS1115","i2c_address":"ADDRESS_0x48","channel":"CHANNEL_3","samplesPerSecond0":"SPS_920","samplesPerSecond1":"SPS_128","progGainAmp":"PGA_4_096V","x":1020,"y":3480,"wires":[["b7145f79.0dc0b"]]},{"id":"b7145f79.0dc0b","type":"change","z":"145bab00.96b455","name":"Wandler","rules":[{"t":"set","p":"payload","pt":"msg","to":"msg.payload.*","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":1200,"y":3480,"wires":[["d9460e33.f7f84","fa1dc728.a52528","3b96fc32.5eb274","fed6f81b.cd5ee8"]]},{"id":"d9460e33.f7f84","type":"debug","z":"145bab00.96b455","name":"Anzeige Feuchtigkeit 1","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","x":1400,"y":3480,"wires":[]},{"id":"fa1dc728.a52528","type":"switch","z":"145bab00.96b455","name":"<1.5/>4","property":"payload","propertyType":"msg","rules":[{"t":"lt","v":"1.5","vt":"num"},{"t":"gt","v":"4","vt":"num"},{"t":"else"}],"checkall":"true","repair":false,"outputs":3,"x":2160,"y":3820,"wires":[["6e176275.19ab9c","39cb64aa.6c558c","ebf0a254.b4a8d"],["eea57b4b.95aaf8","c2d5e29f.5d659","f43c8252.8bb63"],["14e0dce0.6feff3","7e00136c.2c327c","b48edd27.e8c51","36f3b7e7.7dd438"]]},{"id":"3b96fc32.5eb274","type":"http request","z":"145bab00.96b455","name":"air","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Sektor3&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2250,"y":3980,"wires":[["40b47503.3da92c"]]},{"id":"40b47503.3da92c","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2530,"y":3980,"wires":[]},{"id":"14e0dce0.6feff3","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2390,"y":3740,"wires":[["257014bf.e9becc"]]},{"id":"6e176275.19ab9c","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":2390,"y":3780,"wires":[["257014bf.e9becc"]]},{"id":"257014bf.e9becc","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"15","set":"","level":"0","freq":"","out":"out","x":2660,"y":3780,"wires":[]},{"id":"eea57b4b.95aaf8","type":"change","z":"145bab00.96b455","name":"an","rules":[{"t":"set","p":"payload","pt":"msg","to":"1","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2390,"y":3820,"wires":[["8d30883b.9e2018"]]},{"id":"7e00136c.2c327c","type":"change","z":"145bab00.96b455","name":"aus","rules":[{"t":"set","p":"payload","pt":"msg","to":"0","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":2390,"y":3860,"wires":[["8d30883b.9e2018"]]},{"id":"8d30883b.9e2018","type":"rpi-gpio out","z":"145bab00.96b455","name":"","pin":"16","set":"","level":"0","freq":"","out":"out","x":2660,"y":3840,"wires":[]},{"id":"fed6f81b.cd5ee8","type":"http request","z":"145bab00.96b455","name":"pro","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Feuchtigkeitssensor&value={{{payload}}}&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2250,"y":4020,"wires":[["d9969f55.0816d"]]},{"id":"d9969f55.0816d","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2530,"y":4020,"wires":[]},{"id":"b48edd27.e8c51","type":"http request","z":"145bab00.96b455","name":"grün","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Feuchtigkeitssensor3_style&value=color:green&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2410,"y":3660,"wires":[[]]},{"id":"39cb64aa.6c558c","type":"http request","z":"145bab00.96b455","name":"rot","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Feuchtigkeitssensor3_style&value=color:red&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2410,"y":3580,"wires":[[]]},{"id":"c2d5e29f.5d659","type":"http request","z":"145bab00.96b455","name":"dunkel rot","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Feuchtigkeitssensor3_style&value=color:darked&modus=pro","tls":"","persist":false,"proxy":"","authType":"","x":2420,"y":3620,"wires":[[]]},{"id":"2f189a33.e53a96","type":"http request","z":"145bab00.96b455","name":"grün","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor2&alles gut&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2370,"y":2700,"wires":[[]]},{"id":"32fa8f25.6447","type":"http request","z":"145bab00.96b455","name":"rot","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor2&dringend gießen&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2370,"y":2620,"wires":[[]]},{"id":"f75339d5.6af138","type":"http request","z":"145bab00.96b455","name":"dunkel rot","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor2&zu viel Wasser&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2380,"y":2660,"wires":[[]]},{"id":"36f3b7e7.7dd438","type":"http request","z":"145bab00.96b455","name":"grün","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor3&alles gut&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2410,"y":3540,"wires":[[]]},{"id":"ebf0a254.b4a8d","type":"http request","z":"145bab00.96b455","name":"rot","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor3&dringend gießen&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2410,"y":3460,"wires":[[]]},{"id":"f43c8252.8bb63","type":"http request","z":"145bab00.96b455","name":"dunkel rot","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor3&zu viel Wasser&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2420,"y":3500,"wires":[[]]},{"id":"9c377d08.5a6e3","type":"http request","z":"145bab00.96b455","name":"grün","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor1&alles gut&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2330,"y":1900,"wires":[[]]},{"id":"2f6fd28f.98c41e","type":"http request","z":"145bab00.96b455","name":"rot","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor1&dringend gießen&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2330,"y":1820,"wires":[[]]},{"id":"cef9ccfb.737bd","type":"http request","z":"145bab00.96b455","name":"dunkel rot","method":"GET","ret":"txt","paytoqs":false,"url":"https://192.168.0.28/kom.php?key=Sektor1&zu viel Wasser&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2340,"y":1860,"wires":[[]]},{"id":"b4acd664.25e128","type":"http request","z":"145bab00.96b455","name":"grün einfärben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur_style&alles gut=color:green&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2300,"y":1120,"wires":[[]]},{"id":"5391a306.6fbb4c","type":"http request","z":"145bab00.96b455","name":"rot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur_style&zu Kalt=color:red&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2290,"y":1040,"wires":[[]]},{"id":"938be8e9.da5018","type":"http request","z":"145bab00.96b455","name":"dunkelrot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Temperatur_style&zu warm=color:darked&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2310,"y":1080,"wires":[[]]},{"id":"be6a1cc2.eaf56","type":"http request","z":"145bab00.96b455","name":"grün einfärben ","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&alles gut=color:green&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2320,"y":480,"wires":[[]]},{"id":"a4bd9a5b.8d4da8","type":"http request","z":"145bab00.96b455","name":"rot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&zu wenig Licht=color:red&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2310,"y":400,"wires":[[]]},{"id":"c3c642e.cba37c","type":"http request","z":"145bab00.96b455","name":"dunkelrot einfärben","method":"GET","ret":"txt","paytoqs":false,"url":"http://192.168.0.28/kom.php?key=Helligkeit_style&zu viel Licht=color:darked&modus=air","tls":"","persist":false,"proxy":"","authType":"","x":2330,"y":440,"wires":[[]]},{"id":"91a7e678.50d3b8","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","targetType":"msg","x":2390,"y":1580,"wires":[]},{"id":"f447cb4.d146438","type":"debug","z":"145bab00.96b455","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2390,"y":1620,"wires":[]}]
+[
+    {
+        "id": "145bab00.96b455",
+        "type": "tab",
+        "label": "//Mark 4 ",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "22dd9c65.757544",
+        "type": "inject",
+        "z": "145bab00.96b455",
+        "name": "start",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "6",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 510,
+        "y": 1140,
+        "wires": [
+            [
+                "b342cb0b.d68ae8",
+                "ba116a57.62da48",
+                "6ff71088.7a4db",
+                "37bcfc0c.a960f4",
+                "d8c23cad.a5bba",
+                "1000169b.7e7909",
+                "665202b3.64107c",
+                "87b0982a.60e4f8",
+                "77baae19.17374",
+                "2d58071.7ec73f8"
+            ]
+        ]
+    },
+    {
+        "id": "b342cb0b.d68ae8",
+        "type": "ads1x15-raspi",
+        "z": "145bab00.96b455",
+        "property": "payload",
+        "name": "Lichtsensor",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_0",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_128",
+        "progGainAmp": "PGA_4_096V",
+        "x": 690,
+        "y": 580,
+        "wires": [
+            [
+                "5282a8a2.bb5a48"
+            ]
+        ]
+    },
+    {
+        "id": "ba116a57.62da48",
+        "type": "rpi-ds18b20",
+        "z": "145bab00.96b455",
+        "topic": "",
+        "array": false,
+        "name": "Tempratursensor",
+        "x": 870,
+        "y": 1140,
+        "wires": [
+            [
+                "b9952d61.d37c4",
+                "e7a8de08.62ccc",
+                "cf942f65.2037b",
+                "6f491d47.0dda44"
+            ]
+        ]
+    },
+    {
+        "id": "b9952d61.d37c4",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "Temperatur",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1090,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "5282a8a2.bb5a48",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "Wandler",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.*",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "b51854bc.6a3168",
+                "dd33b075.754b6",
+                "7f34265d.d38358",
+                "db7232de.c8358"
+            ]
+        ]
+    },
+    {
+        "id": "b51854bc.6a3168",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "Anzeige Licht",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1100,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "dd33b075.754b6",
+        "type": "switch",
+        "z": "145bab00.96b455",
+        "name": ">3.6/<2",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "3.6",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1920,
+        "y": 740,
+        "wires": [
+            [
+                "83bed695.b8a718",
+                "a9a89a39.ca6cd8",
+                "9122d6b8.578868",
+                "a4bd9a5b.8d4da8"
+            ],
+            [
+                "2a779359.0018ac",
+                "8afac4a9.477828",
+                "ae0b4afe.5da108",
+                "c3c642e.cba37c"
+            ],
+            [
+                "d0362171.4af69",
+                "be6a1cc2.eaf56"
+            ]
+        ]
+    },
+    {
+        "id": "6ff71088.7a4db",
+        "type": "ads1x15-raspi",
+        "z": "145bab00.96b455",
+        "property": "payload",
+        "name": "Feuchtigkeitssensor 1",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_1",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_128",
+        "progGainAmp": "PGA_4_096V",
+        "x": 940,
+        "y": 1860,
+        "wires": [
+            [
+                "9a593b6b.ab2f18"
+            ]
+        ]
+    },
+    {
+        "id": "9a593b6b.ab2f18",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "Wandler",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.*",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 1860,
+        "wires": [
+            [
+                "4ab1d77e.f45ae8",
+                "ca5ea035.a1e9e",
+                "3eef3a6b.a6adf6",
+                "bdca717a.c3ba6"
+            ]
+        ]
+    },
+    {
+        "id": "4ab1d77e.f45ae8",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "Anzeige Feuchtigkeit 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1320,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "ca5ea035.a1e9e",
+        "type": "switch",
+        "z": "145bab00.96b455",
+        "name": "<1.5/>4",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "1.5",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 2080,
+        "y": 2200,
+        "wires": [
+            [
+                "9acf271a.68cd58",
+                "5cf5db6c.523024",
+                "2f6fd28f.98c41e"
+            ],
+            [
+                "df7b29d8.35e498",
+                "fc25671c.634858",
+                "cef9ccfb.737bd"
+            ],
+            [
+                "dd9042bb.215b2",
+                "71b13e46.46849",
+                "2eff3386.bd43dc",
+                "9c377d08.5a6e3"
+            ]
+        ]
+    },
+    {
+        "id": "7f34265d.d38358",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "Werte an pro Website weitergeben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.0.28/kom.php?key=Helligkeit&value={{{payload}}}&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2200,
+        "y": 900,
+        "wires": [
+            [
+                "227322fb.b40d2e"
+            ]
+        ]
+    },
+    {
+        "id": "227322fb.b40d2e",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 2430,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "1000169b.7e7909",
+        "type": "ip",
+        "z": "145bab00.96b455",
+        "name": "ip",
+        "https": false,
+        "timeout": "5000",
+        "internalIPv4": true,
+        "internalIPv6": true,
+        "publicIPv4": true,
+        "publicIPv6": false,
+        "x": 890,
+        "y": 4440,
+        "wires": [
+            [
+                "6c9dfcdf.f4c124"
+            ]
+        ]
+    },
+    {
+        "id": "6c9dfcdf.f4c124",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.internalIPv4",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 4440,
+        "wires": [
+            [
+                "8f1069e1.b2cd08",
+                "839a3850.f30058"
+            ]
+        ]
+    },
+    {
+        "id": "8f1069e1.b2cd08",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "IP an pro Website weitergeben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=lokaleIP&value={{{payload}}}&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1410,
+        "y": 4520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7a8de08.62ccc",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "Werte an pro Website senden ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur&value={{{payload}}}&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2170,
+        "y": 1580,
+        "wires": [
+            [
+                "91a7e678.50d3b8"
+            ]
+        ]
+    },
+    {
+        "id": "3eef3a6b.a6adf6",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2170,
+        "y": 2360,
+        "wires": [
+            [
+                "5654b909.c73558"
+            ]
+        ]
+    },
+    {
+        "id": "5654b909.c73558",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2450,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "d0362171.4af69",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün einfärben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit_style&value=color:green&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2320,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a779359.0018ac",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit_style&value=color:red&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83bed695.b8a718",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkelrot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit_style&value=color:darked&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2330,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "37bcfc0c.a960f4",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "IP einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=lokaleIP_style&value=color:darkblue;modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 870,
+        "y": 4680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8c23cad.a5bba",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "zuletzt geloescht einfärben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=zuletzt geloescht_style&value=color:lightgrey&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 920,
+        "y": 4980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cf942f65.2037b",
+        "type": "switch",
+        "z": "145bab00.96b455",
+        "name": ">23/<21",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "30.5",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "17.8",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1960,
+        "y": 1360,
+        "wires": [
+            [
+                "b89db703.8a0048",
+                "9f5cf693.642a28",
+                "4ef89853.21ca98",
+                "5391a306.6fbb4c"
+            ],
+            [
+                "c8320fe2.ea06e",
+                "c865e460.168558",
+                "f6e156d0.926ea8",
+                "938be8e9.da5018"
+            ],
+            [
+                "91219cc0.72fe8",
+                "b4acd664.25e128"
+            ]
+        ]
+    },
+    {
+        "id": "dd9042bb.215b2",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2310,
+        "y": 2120,
+        "wires": [
+            [
+                "e72cd340.fffe"
+            ]
+        ]
+    },
+    {
+        "id": "9acf271a.68cd58",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2310,
+        "y": 2160,
+        "wires": [
+            [
+                "e72cd340.fffe"
+            ]
+        ]
+    },
+    {
+        "id": "e72cd340.fffe",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "15",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2580,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "df7b29d8.35e498",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2310,
+        "y": 2200,
+        "wires": [
+            [
+                "202c6b1e.ac2b84"
+            ]
+        ]
+    },
+    {
+        "id": "71b13e46.46849",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2310,
+        "y": 2240,
+        "wires": [
+            [
+                "202c6b1e.ac2b84"
+            ]
+        ]
+    },
+    {
+        "id": "202c6b1e.ac2b84",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "16",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2580,
+        "y": 2220,
+        "wires": []
+    },
+    {
+        "id": "a9a89a39.ca6cd8",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2290,
+        "y": 660,
+        "wires": [
+            [
+                "402c22c7.bcaf8c"
+            ]
+        ]
+    },
+    {
+        "id": "8afac4a9.477828",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2290,
+        "y": 700,
+        "wires": [
+            [
+                "402c22c7.bcaf8c"
+            ]
+        ]
+    },
+    {
+        "id": "402c22c7.bcaf8c",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "37",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2560,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "9122d6b8.578868",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2290,
+        "y": 740,
+        "wires": [
+            [
+                "78d61490.8658dc"
+            ]
+        ]
+    },
+    {
+        "id": "ae0b4afe.5da108",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2290,
+        "y": 780,
+        "wires": [
+            [
+                "78d61490.8658dc"
+            ]
+        ]
+    },
+    {
+        "id": "78d61490.8658dc",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "33",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2560,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "9f5cf693.642a28",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2270,
+        "y": 1400,
+        "wires": [
+            [
+                "f10eeb4c.7e9568"
+            ]
+        ]
+    },
+    {
+        "id": "c865e460.168558",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2270,
+        "y": 1440,
+        "wires": [
+            [
+                "f10eeb4c.7e9568"
+            ]
+        ]
+    },
+    {
+        "id": "f10eeb4c.7e9568",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "35",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2460,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "c8320fe2.ea06e",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2270,
+        "y": 1351,
+        "wires": [
+            [
+                "f2f3c304.c5937"
+            ]
+        ]
+    },
+    {
+        "id": "b89db703.8a0048",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2271,
+        "y": 1306,
+        "wires": [
+            [
+                "f2f3c304.c5937"
+            ]
+        ]
+    },
+    {
+        "id": "f2f3c304.c5937",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "38",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2460,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "db7232de.c8358",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "Werte an air Website weitergeben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.0.28/test2.php?key=Helligkeit&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2200,
+        "y": 960,
+        "wires": [
+            [
+                "fba6061d.0602e8"
+            ]
+        ]
+    },
+    {
+        "id": "fba6061d.0602e8",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 2430,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "6f491d47.0dda44",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "Werte an Website senden ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is//kom.php?key=Temperatur&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2190,
+        "y": 1620,
+        "wires": [
+            [
+                "f447cb4.d146438"
+            ]
+        ]
+    },
+    {
+        "id": "bdca717a.c3ba6",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "pro",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Feuchtigkeitssensor2&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2170,
+        "y": 2400,
+        "wires": [
+            [
+                "e0b697cd.e9f0b8"
+            ]
+        ]
+    },
+    {
+        "id": "e0b697cd.e9f0b8",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2450,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "2eff3386.bd43dc",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1_style&value=color:green&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2330,
+        "y": 2040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5cf5db6c.523024",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1_style&value=color:red&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2330,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc25671c.634858",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkel rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1_style&value=color:darked&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2340,
+        "y": 2000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "839a3850.f30058",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "IP an air Website weitergeben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=lokaleIP&value={{{payload}}}&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1410,
+        "y": 4580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "665202b3.64107c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "IP einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=lokaleIP_style&value=color:darkblue;modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 870,
+        "y": 4760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2d58071.7ec73f8",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "zuletzt geloescht einfärben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=zuletzt geloescht_style&value=color:lightgrey&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 920,
+        "y": 4880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91219cc0.72fe8",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün einfärben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&value=color:green&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2300,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6e156d0.926ea8",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&value=color:red&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2290,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ef89853.21ca98",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkelrot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&value=color:darked&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87b0982a.60e4f8",
+        "type": "ads1x15-raspi",
+        "z": "145bab00.96b455",
+        "property": "payload",
+        "name": "Feuchtigkeitssensor 2",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_2",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_128",
+        "progGainAmp": "PGA_4_096V",
+        "x": 980,
+        "y": 2660,
+        "wires": [
+            [
+                "d839743d.2e8858"
+            ]
+        ]
+    },
+    {
+        "id": "d839743d.2e8858",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "Wandler",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.*",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 2660,
+        "wires": [
+            [
+                "3c513ec8.75a902",
+                "b945b2ba.a1cf4",
+                "54e8f9a4.a385f8",
+                "5a9dac3.52c0454"
+            ]
+        ]
+    },
+    {
+        "id": "3c513ec8.75a902",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "Anzeige Feuchtigkeit 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1360,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "b945b2ba.a1cf4",
+        "type": "switch",
+        "z": "145bab00.96b455",
+        "name": "<1.5/>4",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "1.5",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 2120,
+        "y": 3000,
+        "wires": [
+            [
+                "7b75c6c3.b06738",
+                "7317549.02215ac",
+                "32fa8f25.6447"
+            ],
+            [
+                "d256cdf5.4c85c",
+                "7ccc9e49.6da78",
+                "f75339d5.6af138"
+            ],
+            [
+                "aabc3e20.b0a5f",
+                "eed764de.6c5a58",
+                "5f88fd4d.d8ceb4",
+                "2f189a33.e53a96"
+            ]
+        ]
+    },
+    {
+        "id": "54e8f9a4.a385f8",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2210,
+        "y": 3160,
+        "wires": [
+            [
+                "5a84296e.f7a538"
+            ]
+        ]
+    },
+    {
+        "id": "5a84296e.f7a538",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2490,
+        "y": 3160,
+        "wires": []
+    },
+    {
+        "id": "aabc3e20.b0a5f",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2350,
+        "y": 2920,
+        "wires": [
+            [
+                "53ac7105.7815c"
+            ]
+        ]
+    },
+    {
+        "id": "7b75c6c3.b06738",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2350,
+        "y": 2960,
+        "wires": [
+            [
+                "53ac7105.7815c"
+            ]
+        ]
+    },
+    {
+        "id": "53ac7105.7815c",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "15",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2620,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "d256cdf5.4c85c",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2350,
+        "y": 3000,
+        "wires": [
+            [
+                "8a52b96e.1bc9b8"
+            ]
+        ]
+    },
+    {
+        "id": "eed764de.6c5a58",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2350,
+        "y": 3040,
+        "wires": [
+            [
+                "8a52b96e.1bc9b8"
+            ]
+        ]
+    },
+    {
+        "id": "8a52b96e.1bc9b8",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "16",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2620,
+        "y": 3020,
+        "wires": []
+    },
+    {
+        "id": "5a9dac3.52c0454",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "pro",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Feuchtigkeitssensor2&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2210,
+        "y": 3200,
+        "wires": [
+            [
+                "fcbd70e6.8febf"
+            ]
+        ]
+    },
+    {
+        "id": "fcbd70e6.8febf",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2490,
+        "y": 3200,
+        "wires": []
+    },
+    {
+        "id": "5f88fd4d.d8ceb4",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2_style&value=color:green&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 2840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7317549.02215ac",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2_style&value=color:red&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 2760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ccc9e49.6da78",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkel rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2_style&value=color:darked&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2380,
+        "y": 2800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "77baae19.17374",
+        "type": "ads1x15-raspi",
+        "z": "145bab00.96b455",
+        "property": "payload",
+        "name": "Feuchtigkeitssensor 3",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_3",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_128",
+        "progGainAmp": "PGA_4_096V",
+        "x": 1020,
+        "y": 3480,
+        "wires": [
+            [
+                "b7145f79.0dc0b"
+            ]
+        ]
+    },
+    {
+        "id": "b7145f79.0dc0b",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "Wandler",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.*",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 3480,
+        "wires": [
+            [
+                "d9460e33.f7f84",
+                "fa1dc728.a52528",
+                "3b96fc32.5eb274",
+                "fed6f81b.cd5ee8"
+            ]
+        ]
+    },
+    {
+        "id": "d9460e33.f7f84",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "Anzeige Feuchtigkeit 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1400,
+        "y": 3480,
+        "wires": []
+    },
+    {
+        "id": "fa1dc728.a52528",
+        "type": "switch",
+        "z": "145bab00.96b455",
+        "name": "<1.5/>4",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "1.5",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 2160,
+        "y": 3820,
+        "wires": [
+            [
+                "6e176275.19ab9c",
+                "39cb64aa.6c558c",
+                "ebf0a254.b4a8d"
+            ],
+            [
+                "eea57b4b.95aaf8",
+                "c2d5e29f.5d659",
+                "f43c8252.8bb63"
+            ],
+            [
+                "14e0dce0.6feff3",
+                "7e00136c.2c327c",
+                "b48edd27.e8c51",
+                "36f3b7e7.7dd438"
+            ]
+        ]
+    },
+    {
+        "id": "3b96fc32.5eb274",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2250,
+        "y": 3980,
+        "wires": [
+            [
+                "40b47503.3da92c"
+            ]
+        ]
+    },
+    {
+        "id": "40b47503.3da92c",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2530,
+        "y": 3980,
+        "wires": []
+    },
+    {
+        "id": "14e0dce0.6feff3",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2390,
+        "y": 3740,
+        "wires": [
+            [
+                "257014bf.e9becc"
+            ]
+        ]
+    },
+    {
+        "id": "6e176275.19ab9c",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2390,
+        "y": 3780,
+        "wires": [
+            [
+                "257014bf.e9becc"
+            ]
+        ]
+    },
+    {
+        "id": "257014bf.e9becc",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "15",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2660,
+        "y": 3780,
+        "wires": []
+    },
+    {
+        "id": "eea57b4b.95aaf8",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2390,
+        "y": 3820,
+        "wires": [
+            [
+                "8d30883b.9e2018"
+            ]
+        ]
+    },
+    {
+        "id": "7e00136c.2c327c",
+        "type": "change",
+        "z": "145bab00.96b455",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2390,
+        "y": 3860,
+        "wires": [
+            [
+                "8d30883b.9e2018"
+            ]
+        ]
+    },
+    {
+        "id": "8d30883b.9e2018",
+        "type": "rpi-gpio out",
+        "z": "145bab00.96b455",
+        "name": "",
+        "pin": "16",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 2660,
+        "y": 3840,
+        "wires": []
+    },
+    {
+        "id": "fed6f81b.cd5ee8",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "pro",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Feuchtigkeitssensor&value={{{payload}}}&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2250,
+        "y": 4020,
+        "wires": [
+            [
+                "d9969f55.0816d"
+            ]
+        ]
+    },
+    {
+        "id": "d9969f55.0816d",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2530,
+        "y": 4020,
+        "wires": []
+    },
+    {
+        "id": "b48edd27.e8c51",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3_style&value=color:green&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 3660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39cb64aa.6c558c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3_style&value=color:red&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 3580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2d5e29f.5d659",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkel rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3_style&value=color:darked&modus=pro",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2420,
+        "y": 3620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f189a33.e53a96",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor2&alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 2700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "32fa8f25.6447",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor2&dringend gießen&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 2620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f75339d5.6af138",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkel rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor2&zu viel Wasser&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2380,
+        "y": 2660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36f3b7e7.7dd438",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor3&alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 3540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ebf0a254.b4a8d",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor3&dringend gießen&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 3460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f43c8252.8bb63",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkel rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor3&zu viel Wasser&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2420,
+        "y": 3500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c377d08.5a6e3",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor1&alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2330,
+        "y": 1900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f6fd28f.98c41e",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor1&dringend gießen&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2330,
+        "y": 1820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cef9ccfb.737bd",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkel rot",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://tristan.sander.is/kom.php?key=Sektor1&zu viel Wasser&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2340,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4acd664.25e128",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün einfärben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&alles gut=color:green&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2300,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5391a306.6fbb4c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&zu Kalt=color:red&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2290,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "938be8e9.da5018",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkelrot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&zu warm=color:darked&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be6a1cc2.eaf56",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "grün einfärben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit_style&alles gut=color:green&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2320,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4bd9a5b.8d4da8",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "rot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit_style&zu wenig Licht=color:red&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c3c642e.cba37c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "dunkelrot einfärben",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit_style&zu viel Licht=color:darked&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2330,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91a7e678.50d3b8",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 2390,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "f447cb4.d146438",
+        "type": "debug",
+        "z": "145bab00.96b455",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2390,
+        "y": 1620,
+        "wires": []
+    }
+]
