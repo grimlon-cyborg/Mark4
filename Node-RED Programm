@@ -47,8 +47,8 @@
         "samplesPerSecond0": "SPS_920",
         "samplesPerSecond1": "SPS_128",
         "progGainAmp": "PGA_4_096V",
-        "x": 690,
-        "y": 580,
+        "x": 710,
+        "y": 260,
         "wires": [
             [
                 "5282a8a2.bb5a48"
@@ -68,8 +68,7 @@
             [
                 "b9952d61.d37c4",
                 "e7a8de08.62ccc",
-                "cf942f65.2037b",
-                "6f491d47.0dda44"
+                "cf942f65.2037b"
             ]
         ]
     },
@@ -107,14 +106,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 880,
-        "y": 580,
+        "x": 900,
+        "y": 260,
         "wires": [
             [
                 "b51854bc.6a3168",
                 "dd33b075.754b6",
-                "7f34265d.d38358",
-                "db7232de.c8358"
+                "7f34265d.d38358"
             ]
         ]
     },
@@ -129,8 +127,8 @@
         "tostatus": true,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1100,
-        "y": 580,
+        "x": 1120,
+        "y": 260,
         "wires": []
     },
     {
@@ -158,24 +156,27 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 1920,
-        "y": 740,
+        "x": 1960,
+        "y": 640,
         "wires": [
             [
                 "83bed695.b8a718",
                 "a9a89a39.ca6cd8",
                 "9122d6b8.578868",
-                "a4bd9a5b.8d4da8"
+                "a4bd9a5b.8d4da8",
+                "b88ea3d9.cf2b5"
             ],
             [
                 "2a779359.0018ac",
                 "8afac4a9.477828",
                 "ae0b4afe.5da108",
-                "c3c642e.cba37c"
+                "c3c642e.cba37c",
+                "e27bf76d.ec1d78"
             ],
             [
                 "d0362171.4af69",
-                "be6a1cc2.eaf56"
+                "be6a1cc2.eaf56",
+                "ec123269.80ce"
             ]
         ]
     },
@@ -224,7 +225,6 @@
             [
                 "4ab1d77e.f45ae8",
                 "ca5ea035.a1e9e",
-                "3eef3a6b.a6adf6",
                 "bdca717a.c3ba6"
             ]
         ]
@@ -275,18 +275,21 @@
             [
                 "9acf271a.68cd58",
                 "5cf5db6c.523024",
-                "2f6fd28f.98c41e"
+                "2f6fd28f.98c41e",
+                "1a80e762.633649"
             ],
             [
                 "df7b29d8.35e498",
                 "fc25671c.634858",
-                "cef9ccfb.737bd"
+                "cef9ccfb.737bd",
+                "47d1d24e.d9b01c"
             ],
             [
                 "dd9042bb.215b2",
                 "71b13e46.46849",
                 "2eff3386.bd43dc",
-                "9c377d08.5a6e3"
+                "9c377d08.5a6e3",
+                "7a41c5b6.4c148c"
             ]
         ]
     },
@@ -294,17 +297,17 @@
         "id": "7f34265d.d38358",
         "type": "http request",
         "z": "145bab00.96b455",
-        "name": "Werte an pro Website weitergeben ",
+        "name": "Werte an Website weitergeben ",
         "method": "GET",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://192.168.0.28/kom.php?key=Helligkeit&value={{{payload}}}&modus=pro",
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit&value={{{payload}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2200,
-        "y": 900,
+        "x": 2230,
+        "y": 800,
         "wires": [
             [
                 "227322fb.b40d2e"
@@ -322,8 +325,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 2430,
-        "y": 900,
+        "x": 2470,
+        "y": 800,
         "wires": []
     },
     {
@@ -396,11 +399,11 @@
         "id": "e7a8de08.62ccc",
         "type": "http request",
         "z": "145bab00.96b455",
-        "name": "Werte an pro Website senden ",
+        "name": "Werte an Website weitergeben ",
         "method": "GET",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Temperatur&value={{{payload}}}&modus=pro",
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur&value={{{payload}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -412,41 +415,6 @@
                 "91a7e678.50d3b8"
             ]
         ]
-    },
-    {
-        "id": "3eef3a6b.a6adf6",
-        "type": "http request",
-        "z": "145bab00.96b455",
-        "name": "air",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Sektor1&modus=air",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 2170,
-        "y": 2360,
-        "wires": [
-            [
-                "5654b909.c73558"
-            ]
-        ]
-    },
-    {
-        "id": "5654b909.c73558",
-        "type": "debug",
-        "z": "145bab00.96b455",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 2450,
-        "y": 2360,
-        "wires": []
     },
     {
         "id": "d0362171.4af69",
@@ -461,8 +429,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2320,
-        "y": 600,
+        "x": 2340,
+        "y": 280,
         "wires": [
             []
         ]
@@ -480,8 +448,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2310,
-        "y": 520,
+        "x": 2330,
+        "y": 200,
         "wires": [
             []
         ]
@@ -499,8 +467,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2330,
-        "y": 560,
+        "x": 2350,
+        "y": 240,
         "wires": [
             []
         ]
@@ -575,17 +543,20 @@
                 "b89db703.8a0048",
                 "9f5cf693.642a28",
                 "4ef89853.21ca98",
-                "5391a306.6fbb4c"
+                "5391a306.6fbb4c",
+                "f748fb68.d81758"
             ],
             [
                 "c8320fe2.ea06e",
                 "c865e460.168558",
                 "f6e156d0.926ea8",
-                "938be8e9.da5018"
+                "938be8e9.da5018",
+                "fe2ca06a.c66b2"
             ],
             [
                 "91219cc0.72fe8",
-                "b4acd664.25e128"
+                "b4acd664.25e128",
+                "3c067579.e7066a"
             ]
         ]
     },
@@ -744,8 +715,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2290,
-        "y": 660,
+        "x": 2330,
+        "y": 560,
         "wires": [
             [
                 "402c22c7.bcaf8c"
@@ -771,8 +742,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2290,
-        "y": 700,
+        "x": 2330,
+        "y": 600,
         "wires": [
             [
                 "402c22c7.bcaf8c"
@@ -789,8 +760,8 @@
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 2560,
-        "y": 680,
+        "x": 2600,
+        "y": 580,
         "wires": []
     },
     {
@@ -812,8 +783,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2290,
-        "y": 740,
+        "x": 2330,
+        "y": 640,
         "wires": [
             [
                 "78d61490.8658dc"
@@ -839,8 +810,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2290,
-        "y": 780,
+        "x": 2330,
+        "y": 680,
         "wires": [
             [
                 "78d61490.8658dc"
@@ -857,8 +828,8 @@
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 2560,
-        "y": 760,
+        "x": 2600,
+        "y": 660,
         "wires": []
     },
     {
@@ -998,98 +969,6 @@
         "wires": []
     },
     {
-        "id": "db7232de.c8358",
-        "type": "http request",
-        "z": "145bab00.96b455",
-        "name": "Werte an air Website weitergeben ",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://192.168.0.28/test2.php?key=Helligkeit&modus=air",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 2200,
-        "y": 960,
-        "wires": [
-            [
-                "fba6061d.0602e8"
-            ]
-        ]
-    },
-    {
-        "id": "fba6061d.0602e8",
-        "type": "debug",
-        "z": "145bab00.96b455",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 2430,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "6f491d47.0dda44",
-        "type": "http request",
-        "z": "145bab00.96b455",
-        "name": "Werte an Website senden ",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://tristan.sander.is//kom.php?key=Temperatur&modus=air",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 2190,
-        "y": 1620,
-        "wires": [
-            [
-                "f447cb4.d146438"
-            ]
-        ]
-    },
-    {
-        "id": "bdca717a.c3ba6",
-        "type": "http request",
-        "z": "145bab00.96b455",
-        "name": "pro",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Feuchtigkeitssensor2&modus=pro",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 2170,
-        "y": 2400,
-        "wires": [
-            [
-                "e0b697cd.e9f0b8"
-            ]
-        ]
-    },
-    {
-        "id": "e0b697cd.e9f0b8",
-        "type": "debug",
-        "z": "145bab00.96b455",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 2450,
-        "y": 2400,
-        "wires": []
-    },
-    {
         "id": "2eff3386.bd43dc",
         "type": "http request",
         "z": "145bab00.96b455",
@@ -1103,7 +982,7 @@
         "proxy": "",
         "authType": "",
         "x": 2330,
-        "y": 2040,
+        "y": 1920,
         "wires": [
             []
         ]
@@ -1122,7 +1001,7 @@
         "proxy": "",
         "authType": "",
         "x": 2330,
-        "y": 1960,
+        "y": 1840,
         "wires": [
             []
         ]
@@ -1141,7 +1020,7 @@
         "proxy": "",
         "authType": "",
         "x": 2340,
-        "y": 2000,
+        "y": 1880,
         "wires": [
             []
         ]
@@ -1217,7 +1096,7 @@
         "proxy": "",
         "authType": "",
         "x": 2300,
-        "y": 1240,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -1236,7 +1115,7 @@
         "proxy": "",
         "authType": "",
         "x": 2290,
-        "y": 1160,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -1255,7 +1134,7 @@
         "proxy": "",
         "authType": "",
         "x": 2310,
-        "y": 1200,
+        "y": 1060,
         "wires": [
             []
         ]
@@ -1305,7 +1184,6 @@
             [
                 "3c513ec8.75a902",
                 "b945b2ba.a1cf4",
-                "54e8f9a4.a385f8",
                 "5a9dac3.52c0454"
             ]
         ]
@@ -1356,55 +1234,23 @@
             [
                 "7b75c6c3.b06738",
                 "7317549.02215ac",
-                "32fa8f25.6447"
+                "32fa8f25.6447",
+                "450d4bc6.bc59a4"
             ],
             [
                 "d256cdf5.4c85c",
                 "7ccc9e49.6da78",
-                "f75339d5.6af138"
+                "f75339d5.6af138",
+                "50742f85.a4e87"
             ],
             [
                 "aabc3e20.b0a5f",
                 "eed764de.6c5a58",
                 "5f88fd4d.d8ceb4",
-                "2f189a33.e53a96"
+                "2f189a33.e53a96",
+                "d7038305.087f4"
             ]
         ]
-    },
-    {
-        "id": "54e8f9a4.a385f8",
-        "type": "http request",
-        "z": "145bab00.96b455",
-        "name": "air",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Sektor2&modus=air",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 2210,
-        "y": 3160,
-        "wires": [
-            [
-                "5a84296e.f7a538"
-            ]
-        ]
-    },
-    {
-        "id": "5a84296e.f7a538",
-        "type": "debug",
-        "z": "145bab00.96b455",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 2490,
-        "y": 3160,
-        "wires": []
     },
     {
         "id": "aabc3e20.b0a5f",
@@ -1546,16 +1392,16 @@
         "id": "5a9dac3.52c0454",
         "type": "http request",
         "z": "145bab00.96b455",
-        "name": "pro",
+        "name": "Werte an Website weitergeben ",
         "method": "GET",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Feuchtigkeitssensor2&modus=pro",
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2&modus=pro",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2210,
+        "x": 2270,
         "y": 3200,
         "wires": [
             [
@@ -1591,7 +1437,7 @@
         "proxy": "",
         "authType": "",
         "x": 2370,
-        "y": 2840,
+        "y": 2700,
         "wires": [
             []
         ]
@@ -1610,7 +1456,7 @@
         "proxy": "",
         "authType": "",
         "x": 2370,
-        "y": 2760,
+        "y": 2620,
         "wires": [
             []
         ]
@@ -1629,7 +1475,7 @@
         "proxy": "",
         "authType": "",
         "x": 2380,
-        "y": 2800,
+        "y": 2660,
         "wires": [
             []
         ]
@@ -1679,7 +1525,6 @@
             [
                 "d9460e33.f7f84",
                 "fa1dc728.a52528",
-                "3b96fc32.5eb274",
                 "fed6f81b.cd5ee8"
             ]
         ]
@@ -1730,55 +1575,23 @@
             [
                 "6e176275.19ab9c",
                 "39cb64aa.6c558c",
-                "ebf0a254.b4a8d"
+                "ebf0a254.b4a8d",
+                "6d3e7005.bf35c"
             ],
             [
                 "eea57b4b.95aaf8",
                 "c2d5e29f.5d659",
-                "f43c8252.8bb63"
+                "f43c8252.8bb63",
+                "c0a08cad.65078"
             ],
             [
                 "14e0dce0.6feff3",
                 "7e00136c.2c327c",
                 "b48edd27.e8c51",
-                "36f3b7e7.7dd438"
+                "36f3b7e7.7dd438",
+                "fb0c63a6.45844"
             ]
         ]
-    },
-    {
-        "id": "3b96fc32.5eb274",
-        "type": "http request",
-        "z": "145bab00.96b455",
-        "name": "air",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Sektor3&modus=air",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 2250,
-        "y": 3980,
-        "wires": [
-            [
-                "40b47503.3da92c"
-            ]
-        ]
-    },
-    {
-        "id": "40b47503.3da92c",
-        "type": "debug",
-        "z": "145bab00.96b455",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 2530,
-        "y": 3980,
-        "wires": []
     },
     {
         "id": "14e0dce0.6feff3",
@@ -1920,16 +1733,16 @@
         "id": "fed6f81b.cd5ee8",
         "type": "http request",
         "z": "145bab00.96b455",
-        "name": "pro",
+        "name": "Werte an Website weitergeben ",
         "method": "GET",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Feuchtigkeitssensor&value={{{payload}}}&modus=pro",
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3&value={{{payload}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2250,
+        "x": 2290,
         "y": 4020,
         "wires": [
             [
@@ -1964,8 +1777,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2410,
-        "y": 3660,
+        "x": 2390,
+        "y": 3540,
         "wires": [
             []
         ]
@@ -1983,8 +1796,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2410,
-        "y": 3580,
+        "x": 2390,
+        "y": 3460,
         "wires": [
             []
         ]
@@ -2002,8 +1815,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2420,
-        "y": 3620,
+        "x": 2400,
+        "y": 3500,
         "wires": [
             []
         ]
@@ -2022,7 +1835,7 @@
         "proxy": "",
         "authType": "",
         "x": 2370,
-        "y": 2700,
+        "y": 2580,
         "wires": [
             []
         ]
@@ -2041,7 +1854,7 @@
         "proxy": "",
         "authType": "",
         "x": 2370,
-        "y": 2620,
+        "y": 2500,
         "wires": [
             []
         ]
@@ -2060,7 +1873,7 @@
         "proxy": "",
         "authType": "",
         "x": 2380,
-        "y": 2660,
+        "y": 2540,
         "wires": [
             []
         ]
@@ -2078,8 +1891,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2410,
-        "y": 3540,
+        "x": 2390,
+        "y": 3420,
         "wires": [
             []
         ]
@@ -2097,8 +1910,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2410,
-        "y": 3460,
+        "x": 2390,
+        "y": 3340,
         "wires": [
             []
         ]
@@ -2116,8 +1929,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2420,
-        "y": 3500,
+        "x": 2400,
+        "y": 3380,
         "wires": [
             []
         ]
@@ -2136,7 +1949,7 @@
         "proxy": "",
         "authType": "",
         "x": 2330,
-        "y": 1900,
+        "y": 1800,
         "wires": [
             []
         ]
@@ -2155,7 +1968,7 @@
         "proxy": "",
         "authType": "",
         "x": 2330,
-        "y": 1820,
+        "y": 1720,
         "wires": [
             []
         ]
@@ -2174,7 +1987,7 @@
         "proxy": "",
         "authType": "",
         "x": 2340,
-        "y": 1860,
+        "y": 1760,
         "wires": [
             []
         ]
@@ -2193,7 +2006,7 @@
         "proxy": "",
         "authType": "",
         "x": 2300,
-        "y": 1120,
+        "y": 980,
         "wires": [
             []
         ]
@@ -2206,13 +2019,13 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&zu Kalt=color:red&modus=air",
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur_style&zu kalt=color:red&modus=air",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
         "x": 2290,
-        "y": 1040,
+        "y": 900,
         "wires": [
             []
         ]
@@ -2231,7 +2044,7 @@
         "proxy": "",
         "authType": "",
         "x": 2310,
-        "y": 1080,
+        "y": 940,
         "wires": [
             []
         ]
@@ -2249,8 +2062,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2320,
-        "y": 480,
+        "x": 2340,
+        "y": 160,
         "wires": [
             []
         ]
@@ -2268,8 +2081,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2310,
-        "y": 400,
+        "x": 2330,
+        "y": 80,
         "wires": [
             []
         ]
@@ -2287,8 +2100,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 2330,
-        "y": 440,
+        "x": 2350,
+        "y": 120,
         "wires": [
             []
         ]
@@ -2309,7 +2122,28 @@
         "wires": []
     },
     {
-        "id": "f447cb4.d146438",
+        "id": "bdca717a.c3ba6",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "Werte an Website weitergeben ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1&value={{{payload}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2250,
+        "y": 2400,
+        "wires": [
+            [
+                "e0b697cd.e9f0b8"
+            ]
+        ]
+    },
+    {
+        "id": "e0b697cd.e9f0b8",
         "type": "debug",
         "z": "145bab00.96b455",
         "name": "",
@@ -2318,8 +2152,293 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 2390,
-        "y": 1620,
+        "x": 2450,
+        "y": 2400,
         "wires": []
+    },
+    {
+        "id": "ec123269.80ce",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Werte hinzufügen",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit&value=alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2360,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b88ea3d9.cf2b5",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit&value=zu wenig Licht&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2350,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e27bf76d.ec1d78",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Werte hinzufügen",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Helligkeit&value=zu viel Licht&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2360,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c067579.e7066a",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur&value=alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f748fb68.d81758",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air wert hinzufügen",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur&value=zu kalt&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe2ca06a.c66b2",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Temperatur&value=zu warm&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2310,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a41c5b6.4c148c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1&value=alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 2040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a80e762.633649",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1&value=dringend gießen&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47d1d24e.d9b01c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor1&value=zu viel Wasser&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 2000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7038305.087f4",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2&value=alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 2820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "450d4bc6.bc59a4",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2&value=dringend gießen&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 2740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50742f85.a4e87",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor2&value=zu viel Wasser&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2410,
+        "y": 2780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb0c63a6.45844",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3&value=alles gut&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2430,
+        "y": 3660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6d3e7005.bf35c",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3&value=dringend gießen&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2430,
+        "y": 3580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c0a08cad.65078",
+        "type": "http request",
+        "z": "145bab00.96b455",
+        "name": "air Wert hinzufügen  ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://tristan.sander.is/kom.php?key=Sektor3&value=zu viel Wasser&modus=air",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2430,
+        "y": 3620,
+        "wires": [
+            []
+        ]
     }
 ]
