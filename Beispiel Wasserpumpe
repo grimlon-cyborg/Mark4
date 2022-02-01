@@ -1,0 +1,189 @@
+[
+    {
+        "id": "8be89383.26f64",
+        "type": "tab",
+        "label": "Test Wasserpumpe ",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d6cee115.be92c",
+        "type": "inject",
+        "z": "8be89383.26f64",
+        "name": "Start",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "190c748f.8a708b"
+            ]
+        ]
+    },
+    {
+        "id": "2bdad15a.68349e",
+        "type": "rpi-gpio out",
+        "z": "8be89383.26f64",
+        "name": "Pumpe an",
+        "pin": "11",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 1330,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2227e6f7.032a3a",
+        "type": "switch",
+        "z": "8be89383.26f64",
+        "name": "<1.5",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "1.5",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 320,
+        "wires": [
+            [
+                "6431c3f1.1391cc"
+            ],
+            [
+                "fdd94002.c7181"
+            ]
+        ]
+    },
+    {
+        "id": "6311cde4.b12c94",
+        "type": "rpi-gpio out",
+        "z": "8be89383.26f64",
+        "name": "Pumpe aus",
+        "pin": "11",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 1330,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "6431c3f1.1391cc",
+        "type": "change",
+        "z": "8be89383.26f64",
+        "name": "an",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 300,
+        "wires": [
+            [
+                "2bdad15a.68349e"
+            ]
+        ]
+    },
+    {
+        "id": "fdd94002.c7181",
+        "type": "change",
+        "z": "8be89383.26f64",
+        "name": "aus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 340,
+        "wires": [
+            [
+                "6311cde4.b12c94"
+            ]
+        ]
+    },
+    {
+        "id": "190c748f.8a708b",
+        "type": "ads1x15-raspi",
+        "z": "8be89383.26f64",
+        "property": "payload",
+        "name": "Feuchtigkeitssensor 1",
+        "chip": "IC_ADS1115",
+        "i2c_address": "ADDRESS_0x48",
+        "channel": "CHANNEL_1",
+        "samplesPerSecond0": "SPS_920",
+        "samplesPerSecond1": "SPS_128",
+        "progGainAmp": "PGA_4_096V",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "e20c3d59.2cca3"
+            ]
+        ]
+    },
+    {
+        "id": "e20c3d59.2cca3",
+        "type": "change",
+        "z": "8be89383.26f64",
+        "name": "Wandler",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.*",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "2227e6f7.032a3a"
+            ]
+        ]
+    }
+]
