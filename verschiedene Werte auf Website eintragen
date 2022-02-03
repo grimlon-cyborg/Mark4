@@ -1,22 +1,48 @@
 //verschiedene Werte auf Website eintragen  
 
-https://tristan.sander.is/kom.php?modus=air=Tempertur&value=alles gut=color:green
+https://tristan.sander.is/kom.php?=Tempertur&value=alles gut&modus=air
 
-https://tristan.sander.is/kom.php?modus=pro=Tempertur&value=23=color:green 
+https://tristan.sander.is/kom.php?key=Temperatur_style&value=color:green&modus=air
 
-https://tristan.sander.is/kom.php?modus=air=Helligkeit&value=alles gut=color:green 
+https://tristan.sander.is/kom.php?=Tempertur&value=23&modus=pro 
 
-https://tristan.sander.is/kom.php?modus=pro=Helligkeit&value=3.5=color:green 
+https://tristan.sander.is/kom.php?key=Temperatur_style&value=color:green&modus=pro
 
-https://tristan.sander.is/kom.php?modus=air=Sektor1&value=alles gut=color:green 
 
-https://tristan.sander.is/kom.php?modus=pro=Bodenfeuchte1&value=3.7=color:green 
+https://tristan.sander.is/kom.php?=Helligkeit&value=alles gut&modus=air
 
-https://tristan.sander.is/kom.php?modus=air=Sektor2&value=mehr Wasser=color:red
+https://tristan.sander.is/kom.php?key=Helligkeit_style&value=color:green&modus=air
 
-https://tristan.sander.is/kom.php?modus=pro=Bodenfeuchte2&value=1.4=color:red
+https://tristan.sander.is/kom.php?=Helligkeit&value=3.4&modus=pro 
 
-https://tristan.sander.is/kom.php?modus=air=Sektor3&value=zu viel Wasser=color:darkred
+https://tristan.sander.is/kom.php?key=Helligkeit_style&value=color:green&modus=pro
 
-https://tristan.sander.is/kom.php?modus=pro=Bodenfeuchte3&value=4.5=color:darkred
+
+https://tristan.sander.is/kom.php?=Sektor1&value=alles gut&modus=air
+
+https://tristan.sander.is/kom.php?key=Sektor1_style&value=color:green&modus=air
+
+https://tristan.sander.is/kom.php?=Bodenfeuchte1&value=3.7&modus=pro 
+
+https://tristan.sander.is/kom.php?key=Bodenfeuchte1_style&value=color:green&modus=pro
+
+
+https://tristan.sander.is/kom.php?=Sektor2&value=alles gut&modus=air
+
+https://tristan.sander.is/kom.php?key=Sektor2_style&value=color:green&modus=air
+
+https://tristan.sander.is/kom.php?=Bodenfeuchte2&value=1.4&modus=pro 
+
+https://tristan.sander.is/kom.php?key=Bodenfeuchte2_style&value=color:green&modus=pro
+
+
+https://tristan.sander.is/kom.php?=Sektor3&value=alles gut&modus=air
+
+https://tristan.sander.is/kom.php?key=Sektor3_style&value=color:green&modus=air
+
+https://tristan.sander.is/kom.php?=Bodenfeuchte3&value=4.5&modus=pro 
+
+https://tristan.sander.is/kom.php?key=Bodenfeuchte3_style&value=color:green&modus=pro
+
+
 
